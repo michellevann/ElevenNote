@@ -7,22 +7,22 @@ using System.Web.Http;
 
 namespace ElevenNote.Web
 {
-    public class WebApiConfig
+    public static class WebApiConfig
     {
         public static void Register()
         {
             GlobalConfiguration
                 .Configure(
-                x =>
-                {
-                    x
-                        .Formatters
-                        .JsonFormatter
-                        .SupportedMediaTypes
-                        .Add(new MediaTypeHeaderValue("text/html"));
-                    x.MapHttpAttributeRoutes();
-                }
-                    );
+                    x =>
+                    {
+                        x
+                            .Formatters
+                            .JsonFormatter
+                            .SupportedMediaTypes
+                            .Add(new MediaTypeHeaderValue("text/html"));
+                        x.MapHttpAttributeRoutes();
+                    }
+                );
         }
     }
 }

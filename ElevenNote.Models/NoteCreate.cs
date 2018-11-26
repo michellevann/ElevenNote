@@ -17,6 +17,8 @@ namespace ElevenNote.Models
         [MaxLength(8000)]
         public string Content { get; set; }
 
+        public bool IsStarred { get; set; }
+
         public override string ToString() => Title;
         
     }
