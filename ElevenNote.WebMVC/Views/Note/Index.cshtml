@@ -35,7 +35,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.NoteId)
@@ -44,21 +45,21 @@
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IsStarred, new { Id = item.NoteId})
+            @Html.DisplayFor(modelItem => item.IsStarred, new { Id = item.NoteId })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CreatedUtc)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.NoteId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.NoteId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.NoteId })
+            @Html.ActionLink("Edit", "Edit", new { id = item.NoteId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.NoteId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.NoteId })
         </td>
     </tr>
 }
 
-</table>
-@section scripts {
+    </table>
+    @section scripts {
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {
             $("i[data-toggle='star']")
@@ -69,7 +70,19 @@
 
                     $.ajax({
                         method: starSet ? "DELETE" : "PUT",
+                        url: "/api/note/" + noteId + "/star",
+                        data: null
                     })
-                })
+                        .done(function (r) {
+                            target.removeClass();
+                            target.addClass("glyphicon" + (starSet ? "glyphicon-star-empt"))
+                        })
+                        .fail(function (r) {
+                            alert("Failed to change to star status");
+                        });
 
+
+                });
+        });
         </script>}
+}
